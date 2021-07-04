@@ -1,4 +1,5 @@
 import 'package:expenses/models/transaction.dart';
+import 'package:expenses/widgets/chart.dart';
 import 'package:expenses/widgets/new_transactions.dart';
 import 'package:expenses/widgets/transaction_list.dart';
 import 'package:expenses/widgets/user_transactions.dart';
@@ -36,14 +37,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _usertransaction = [
-    Transaction(
-        id: 't1', title: 'New Shoes', amount: 69.69, date: DateTime.now()),
-    Transaction(
-        id: 't2',
-        title: 'New RTX 3080ti VGA',
-        amount: 39.69,
-        date: DateTime.now())
+    // Transaction(
+    //     id: 't1', title: 'New Shoes', amount: 69.69, date: DateTime.now()),
+    // Transaction(
+    //     id: 't2',
+    //     title: 'New RTX 3080ti VGA',
+    //     amount: 39.69,
+    //     date: DateTime.now())
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _usertransaction;
+  }
 
   void _addNewTransaction(String Txtitle, double Txamount) {
     final newTX = Transaction(
@@ -86,14 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blueAccent,
-                elevation: 5,
-                child: Text('Chart!'),
-              ),
-            ),
+            Chart(_usertransaction),
             TransactionList(_usertransaction),
           ],
         ),
